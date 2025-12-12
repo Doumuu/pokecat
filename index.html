@@ -2,6 +2,7 @@
 <html lang="ca">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pokédex - Pokémon Vermell/Blau</title>
   <style>
     :root{
@@ -54,8 +55,10 @@
       transform:translateY(-50%);
       background: transparent;
       border: 1px solid rgba(0,0,0,0.08);
-      border-radius: 6px;
-      padding: 6px 10px;
+      border-radius: 8px;
+      padding: 8px 10px;
+      min-width: 40px;
+      min-height: 40px;
       cursor: pointer;
       font-size: 16px;
       line-height: 1;
@@ -63,8 +66,25 @@
     }
 
     @media (max-width:420px){
-      #theme-toggle{ right:12px; }
+      #theme-toggle{ right:12px; padding:10px; }
       .topbar h1{ font-size: 18px; }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width:900px){
+      .grid{ grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap:12px; }
+      .card img{ width: clamp(64px, 14vw, 88px); height: clamp(64px, 14vw, 88px); }
+    }
+
+    @media (max-width:480px){
+      body{ padding: 12px; }
+      .topbar{ padding: 8px 0; }
+      .topbar h1{ font-size: 16px; }
+      #theme-toggle{ right:10px; top:14px; transform:none; }
+      p.subtitle{ font-size: 14px; }
+      .grid{ grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap:10px; }
+      .card{ padding: 8px; }
+      .card img{ width:72px; height:72px; }
     }
 
     #theme-toggle[aria-pressed="true"]{
@@ -81,7 +101,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 16px;
       max-width: 1200px;
       margin: 0 auto;
@@ -97,8 +117,10 @@
 
     .card img {
       image-rendering: pixelated;
-      width: 96px;
-      height: 96px;
+      width: clamp(64px, 12vw, 96px);
+      height: clamp(64px, 12vw, 96px);
+      display:block;
+      margin:0 auto;
     }
 
     .card .label {
