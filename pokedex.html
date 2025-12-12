@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pokédex - Pokémon Vermell/Blau</title>
+  <style>
+    :root{
+      --bg: #f4f4f4;
+      --card-bg: #ffffff;
+      --text: #222222;
+      --muted: #555555;
+      --shadow: rgba(0,0,0,0.08);
+      --accent: #1f6feb;
+    }
+
+    body.dark{
+      --bg: #0b0f12;
+      --card-bg: #0f1720;
+      --text: #e6eef8;
+      --muted: #9fb1c8;
+      --shadow: rgba(0,0,0,0.6);
+      --accent: #7aa7ff;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 20px;
+      transition: background 200ms ease, color 200ms ease;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      margin-bottom: 10px;
+      position:relative;
+      padding: 10px 0;
+    }
+
+    .topbar h1{ margin:0; }
+
+    #theme-toggle{
+      position:absolute;
+      right:20px;
+      top:50%;
+      transform:translateY(-50%);
+      background: transparent;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 6px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    @media (max-width:420px){
+      #theme-toggle{ right:12px; }
+      .topbar h1{ font-size: 18px; }
+    }
+
+    #theme-toggle[aria-pressed="true"]{
+      border-color: var(--accent);
+      box-shadow: 0 1px 0 var(--accent);
+    }
+
+    p.subtitle {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 16px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 2px 4px var(--shadow);
+    }
+
+    .card img {
+      image-rendering: pixelated;
+      width: 96px;
+      height: 96px;
+    }
+
+    .card .label {
+      margin-top: 6px;
+      font-size: 14px;
+    }
+
+    .card .number {
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .card .name {
+      display: block;
+      font-weight: 600;
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Pokédex - Pokémon Vermell/Blau</h1>
+    <button id="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+  </header>
+  <p class="subtitle">Localització al català dels pokémons 001-151</p>
+
+  <div class="grid" id="pokemon-grid"></div>
+
+  <script>
+    (function(){
+      const toggle = document.getElementById('theme-toggle');
+      if(!toggle) return;
+
+      function setTheme(name){
+        if(name === 'dark') document.body.classList.add('dark');
+        else document.body.classList.remove('dark');
+        const isDark = document.body.classList.contains('dark');
+        toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+        toggle.textContent = isDark ? '☀️' : '🌙';
+      }
+
+      const saved = localStorage.getItem('theme');
+      if(saved) setTheme(saved);
+      else {
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDark ? 'dark' : 'light');
+      }
+
+      toggle.addEventListener('click', ()=>{
+        const isDark = document.body.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+        toggle.textContent = isDark ? '☀️' : '🌙';
+      });
+    })();
+  </script>
+
+  <script>
+    // Kanto Pokédex, in order
+    const pokemonNames = [
+      "Bulbet",   // 1
+      "Borró",     // 2
+      "Borrissol",    // 3
+      "Flamet",  // 4
+      "Flagaix",  // 5
+      "Fladrac",   // 6
+      "Tuguet",    // 7
+      "Torcua",   // 8
+      "Tortugan",   // 9
+      "Seruga",    // 10
+      "Crisol",     // 11
+      "Papalluna",  // 12
+      "Picoll",      // 13
+      "Nimfa",      // 14
+      "Fiblot",    // 15
+      "Parrup",      // 16
+      "Parroig",   // 17
+      "Parrumb",     // 18
+      "Ratata",     // 19
+      "Ratatac",    // 20
+      "Pardam",     // 21
+      "Foradam",      // 22
+      "Pres",       // 23
+      "Arbok",       // 24
+      "Pikachu",     // 25
+      "Raichu",      // 26
+      "Sarena",   // 27
+      "Sorramoll",   // 28
+      "Nidoran♀",    // 29
+      "Nidorina",    // 30
+      "Nidoreina",   // 31
+      "Nidoran♂",    // 32
+      "Nidorino",    // 33
+      "Nidorei",    // 34
+      "Ària",    // 35
+      "Fàdia",    // 36
+      "Sisneu",      // 37
+      "Guinou",   // 38
+      "Núvol",  // 39
+      "Nuvolat",  // 40
+      "Batpenat",       // 41
+      "Muribat",      // 42
+      "Rebrot",      // 43
+      "Rebrut",       // 44
+      "Bromot",   // 45
+      "Paras",       // 46
+      "Parasect",    // 47
+      "Verinàcar",     // 48
+      "Verinarna",    // 49
+      "Excavet",     // 50
+      "Trexcavet",     // 51
+      "Siameu",      // 52
+      "Persameu",     // 53
+      "Psinyec",     // 54
+      "Psikuec",     // 55
+      "Micaqui",      // 56
+      "Micaco",    // 57
+      "Càdill",   // 58
+      "Vulcà",    // 59
+      "Espiret",     // 60
+      "Espirot",   // 61
+      "Espinall",   // 62
+      "Abra",        // 63
+      "Kadabra",     // 64
+      "Dakabra",    // 65
+      "Bracet",      // 66
+      "Braçal",     // 67
+      "Polibraç",     // 68
+      "Didalera",  // 69
+      "Didalla",  // 70
+      "Didabella",  // 71
+      "Tentacool",   // 72
+      "Tentacruel",  // 73
+      "Barroc",     // 74
+      "Rococó",    // 75
+      "Neoclast",       // 76
+      "Ponic",      // 77
+      "Galop",    // 78
+      "Salamandró",    // 79
+      "Salamaimó",     // 80
+      "Magnet",   // 81
+      "Rarèctric",    // 82
+      "Porrolet",  // 83
+      "Dodós",       // 84
+      "Dotrès",      // 85
+      "Focà",        // 86
+      "Maratí",     // 87
+      "Viscox",      // 88
+      "Llefiscox",         // 89
+      "Petxino",    // 90
+      "Conquillo",    // 91
+      "Tasma",      // 92
+      "Pectre",     // 93
+      "Ganger",      // 94
+      "Acerp",        // 95
+      "Sobec",     // 96
+      "Hipno",       // 97
+      "Kranc",      // 98
+      "Kingler",     // 99
+      "Bòltir",     // 100
+      "Borbe",   // 101
+      "Escamou",   // 102
+      "Bandàtil",   // 103
+      "Crànic",      // 104
+      "Prànic",     // 105
+      "Puntaire",   // 106
+      "Boxaire",  // 107
+      "Llepadum",   // 108
+      "Boirum",     // 109
+      "Reboirum",     // 110
+      "Rinorroc",     // 111
+      "Rinobroca",      // 112
+      "Fadi",     // 113
+      "Liana",     // 114
+      "Cangurpes",  // 115
+      "Cavalleti",      // 116
+      "Cavallier",      // 117
+      "Daureta",     // 118
+      "Reiera",     // 119
+      "Estrela",      // 120
+      "Bristel",     // 121
+      "Mímic",    // 122
+      "Segadeu",     // 123
+      "Rougela",        // 124
+      "Electrò",  // 125
+      "Magmar",      // 126
+      "Pínsir",      // 127
+      "Kentauros",      // 128
+      "Magicarp",    // 129
+      "Gyarados",    // 130
+      "Lapras",      // 131
+      "Espill",       // 132
+      "Evo",       // 133
+      "Aquabi",    // 134
+      "Voltiri",     // 135
+      "Guspiri",     // 136
+      "Porígon",     // 137
+      "Naummonit",     // 138
+      "Ammostel",     // 139
+      "Kabuto",      // 140
+      "Kabutops",    // 141
+      "Ptera",  // 142
+      "Dropo",     // 143
+      "Glaciot",    // 144
+      "Voltrò",      // 145
+      "Flàliga",     // 146
+      "Dralet",     // 147
+      "Dralat",   // 148
+      "Dracmar",   // 149
+      "Mewtwo",      // 150
+      "Mew"          // 151
+    ];
+
+    const container = document.getElementById("pokemon-grid");
+
+    pokemonNames.forEach((name, index) => {
+      const id = index + 1;
+      const number = String(id).padStart(3, "0");
+      const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const img = document.createElement("img");
+      img.src = imgUrl;
+      img.alt = `${name} sprite`;
+
+      const label = document.createElement("div");
+      label.className = "label";
+      label.innerHTML = `<span class="number">#${number}</span><br><span class="name">${name}</span>`;
+
+      card.appendChild(img);
+      card.appendChild(label);
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>
