@@ -11,6 +11,8 @@
       --muted: #555555;
       --shadow: rgba(0,0,0,0.08);
       --accent: #1f6feb;
+      --link: #8b0000; /* dark red for links in light mode */
+      --link-active: #5a0000; /* darker red for active/focus in light mode */
     }
 
     body.dark{
@@ -20,6 +22,8 @@
       --muted: #9fb1c8;
       --shadow: rgba(0,0,0,0.6);
       --accent: #7aa7ff;
+      --link: #ff7b7b; /* lighter red for links on dark background */
+      --link-active: #ff4d4d; /* active/focus on dark */
     }
 
     body {
@@ -112,6 +116,19 @@
       font-weight: 600;
       color: var(--text);
     }
+    a{
+      color: var(--link);
+      text-decoration: underline;
+      transition: color 150ms ease, opacity 120ms ease;
+    }
+
+    a:hover{ opacity: 0.92; }
+
+    a:active,
+    a:focus{
+      color: var(--link-active);
+      outline: none;
+    }
   </style>
 </head>
 <body>
@@ -119,7 +136,7 @@
     <h1>Pokédex - Pokémon Vermell/Blau</h1>
     <button id="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
   </header>
-  <p class="subtitle">Localització al català dels pokémons 001-151</p>
+  <p class="subtitle">Llista de noms en català dels 151 pokémons del <a href="https://discord.gg/K2ctsKt2GP" target="_blank" rel="noopener noreferrer">projecte de traducció de Pokémon Vermell/Blau</a>.</p>
 
   <div class="grid" id="pokemon-grid"></div>
 
