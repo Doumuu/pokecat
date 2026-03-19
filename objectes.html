@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Objectes | Projecte de localització de Pokémon vermell/blau</title>
+  <style>
+    /* Light theme (default) */
+    html {
+      --bg: #f4f4f4;
+      --text: #222222;
+      --border: #ccc;
+      --th-bg: #f3f3f3;
+      --link: #8b0000; /* dark red links in light mode */
+      --link-active: #5a0000;
+    }
+
+    body.dark {
+      --bg: #0b0f12;
+      --text: #e6eef8;
+      --border: rgba(255,255,255,0.2);
+      --th-bg: #1f2937;
+      --link: #ff7b7b; /* lighter red on dark */
+      --link-active: #ff4d4d;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      padding: 20px;
+      transition: background-color 200ms ease, color 200ms ease;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    table { border-collapse: collapse; width: 100%; max-width: 900px; margin: 0 auto; }
+    th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; }
+    th { background: var(--th-bg); }
+    th:nth-child(1), td:nth-child(1) { width: 30%; }
+    th:nth-child(2), td:nth-child(2) { width: 70%; }
+
+    /* Link colors based on theme variables */
+    a { color: var(--link); }
+    a:visited { color: var(--link); }
+    a:hover, a:active { color: var(--link-active); }
+
+    /* center page content */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+  </style>
+</head>
+  <body>
+  <div class="container">
+  <div style="display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:20px;">
+    <h1 style="margin:0;">Objectes</h1>
+    <button id="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode" title="Toggle dark mode" style="background:transparent;border:1px solid rgba(0,0,0,0.08);border-radius:8px;padding:8px 10px;min-width:40px;min-height:40px;cursor:pointer;font-size:16px;line-height:1;color:var(--text);position:absolute;right:0;">🌙</button>
+  </div>
+
+ <p>Llista d'objectes del projecte de localització de Pokémon vermell/blau</p>
+
+    <h2>Pokéballs</h2>
+    <table>
+      <tr><th>Objecte</th><th>Descripció</th></tr>
+      <tr><td>Pokéball</td><td>Bola bàsica per atrapar Pokémon.</td></tr>
+      <tr><td>Superball</td><td>Bola més eficaç per atrapar Pokémon.</td></tr>
+      <tr><td>Hiperball</td><td>Bola molt eficaç per atrapar Pokémon.</td></tr>
+      <tr><td>Masterball</td><td>Bola que garanteix l'atrapament de qualsevol Pokémon.</td></tr>
+      <tr><td>Safariball</td><td>Bola específica per a la Zona Safari.</td></tr>
+    </table>
+
+    <h2>Medecines</h2>
+    <table>
+      <tr><th>Objecte</th><th>Descripció</th></tr>
+      <tr><td>Antídot</td><td>Cura un Pokémon enverinat.</td></tr>
+      <tr><td>Anticremades</td><td>Cura un Pokémon amb cremades.</td></tr>
+      <tr><td>Antigel</td><td>Cura un Pokémon glaçat.</td></tr>
+      <tr><td>Antiparàlisi</td><td>Cura un Pokémon paralitzat.</td></tr>
+      <tr><td>Llevador</td><td>Desperta un Pokémon adormit.</td></tr>
+      <tr><td>Cura Total</td><td>Cura totes les afeccions esmentades a sobre.</td></tr>
+    </table>
+    <h2>Pocions i remeis</h2>
+    <table>
+      <tr><th>Objecte</th><th>Descripció</th></tr>
+      <tr><td>Poció</td><td>Fa recobrar alguns punts de vida.</td></tr>
+      <tr><td>Superpoció</td><td>Fa recobrar més punts de vida.</td></tr>
+      <tr><td>Hiperpoció</td><td>Fa recobrar molts punts de vida.</td></tr>
+      <tr><td>Poció Max</td><td>Fa recobrar tots els punts de vida.</td></tr>
+      <tr><td>Recupoció</td><td>Fa recobrar tots els punts de vida i cura totes les afeccions.</td></tr>
+      <tr><td>PP Top</td><td>Restaura alguns punts de poder d'un Pokémon.</td></tr>
+      <tr><td>PP Max</td><td>Restaura tots els punts de poder d'un Pokémon.</td></tr>
+      <tr><td>PPs Top</td><td>Restaura alguns punts de poder de tots els Pokémon.</td></tr>
+      <tr><td>PPs Max</td><td>Restaura tots els punts de poder de tots els Pokémon.</td></tr>
+      <tr><td>Reànim</td><td>Reanima un Pokémon estabornit i recupera la meitat de PV.</td></tr>
+      <tr><td>Reànim Max</td><td>Reanima un Pokémon estabornit i recupera tots els PV.</td></tr>
+    </table>
+    <h2>Begudes</h2>
+    <table>
+      <tr><th>Objecte</th><th>Descripció</th></tr>
+      <tr><td>Font Bella</td><td>Fa pujar una mica els punts de vida d'un Pokémon.</td></tr>
+      <tr><td>Psicola</td><td>Fa pujar bastant els punts de vida d'un Pokémon.</td></tr>
+      <tr><td>Cacaollet</td><td>Fa pujar molt els punts de vida d'un Pokémon.</td></tr>
+    </table>
+    <h2>Fàrmacs</h2>
+    <table>
+      <tr><th>Objecte</th><th>Descripció</th></tr>
+      <tr><td>Taurina</td><td>Incrementa l'atac d'un Pokémon.</td></tr>
+      <tr><td>Bromhexina</td><td>Incrementa la defensa d'un Pokémon.</td></tr>
+      <tr><td>Indometacina</td><td>Incrementa la velocitat d'un Pokémon.</td></tr>
+      <tr><td>Lisozim</td><td>Incrementa l'especial d'un Pokémon.</td></tr>
+    </table>
+    <h2>Per als combats*</h2>
+    <table>
+      <tr><th>Objecte</th><th>Descripció</th></tr>
+      <tr><td>+Atac</td><td>Incrementa l'atac d'un Pokémon en una batalla.</td></tr>
+      <tr><td>+Crític</td><td>Incrementa la probabilitat de fer un atac crític en una batalla.</td></tr>
+      <tr><td>+Defensa</td><td>Incrementa la defensa d'un Pokémon en una batalla.</td></tr>
+      <tr><td>+Punteria</td><td>Incrementa la probabilitat de no fallar un atac en una batalla.</td></tr>
+      <tr><td>+Velocitat</td><td>Incrementa la velocitat d'un Pokémon en una batalla.</td></tr>
+      <tr><td>+Especial</td><td>Incrementa l'especial d'un Pokémon en una batalla.</td></tr>
+      <tr><td>Efecte escut</td><td>Bloqueja els atacs especials d'un contrincant en una batalla.</td></tr>
+    </table>
+    <p><i>*Els efectes desapareixen al canviar de Pokémon.</i></p>
+    <h2>Per a enfortir un Pokémon</h2>
+    <table>
+      <tr><th>Objecte</th><th>Descripció</th></tr>
+      <tr><td>Bombó màgic</td><td>Fa pujar un Pokémon de nivell.</td></tr>
+      <tr><td>+PV</td><td>Incrementa els punts de vida d'un Pokémon.</td></tr>
+      <tr><td>+PP</td><td>Incrementa els punts de poder d'un Pokémon.</td></tr>
+    </table>
+    <h2>Altres objectes</h2>
+    <table>
+      <tr><th>Objecte</th><th>Descripció</th></tr> 
+      <tr><td>Escapacorda</td><td>Et permet escapar d'una cova.</td></tr>
+      <tr><td>Repel·lent</td><td>Allunya els Pokémon salvatges durant un temps.</td></tr>
+      <tr><td>Repel·lent Top</td><td>Té més efecte que el Repel·lent.</td></tr>
+      <tr><td>Repel·lent Max</td><td>Té més efecte que el Repel·lent Top.</td></tr>
+    </table>
+    </table>
+    <h2>Pedres evolutives</h2>
+    <table>
+      <tr><th>Objecte</th><th>Descripció</th></tr>
+      <tr><td>Pedra aigua</td><td>Té efecte en certs Pokémon d'aigua.</td></tr>
+      <tr><td>Pedra flama</td><td>Té efecte en certs Pokémon de foc.</td></tr>
+      <tr><td>Pedra fulla</td><td>Té efecte en certs Pokémon planta.</td></tr>
+      <tr><td>Pedra llamp</td><td>Té efecte en certs Pokémon elèctrics.</td></tr>
+      <tr><td>Pedra lluna</td><td>Té efecte en Pokémon misteriosos.</td></tr>
+    </table>
+
+    <p><a href="index.html">Torna a l'inici</a> | <a href="pokedex.html">Pokédex</a> | <a href="moviments.html">Moviments</a></p>
+  </div>
+
+  <script>
+    (function(){
+      const toggle = document.getElementById('theme-toggle');
+      if(!toggle) return;
+
+      function setTheme(name){
+        if(name === 'dark') document.body.classList.add('dark');
+        else document.body.classList.remove('dark');
+        const isDark = document.body.classList.contains('dark');
+        toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+        toggle.textContent = isDark ? '☀️' : '🌙';
+      }
+
+      const saved = localStorage.getItem('theme');
+      if(saved) setTheme(saved);
+      else {
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDark ? 'dark' : 'light');
+      }
+
+      toggle.addEventListener('click', ()=>{
+        const isDark = document.body.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+        toggle.textContent = isDark ? '☀️' : '🌙';
+      });
+    })();
+  </script>
+</body>
+</html>
